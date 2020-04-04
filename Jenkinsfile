@@ -10,13 +10,17 @@ pipeline {
         dockerImage = ''  
     }	
    
-	
+    tools {
+        maven 'M2_HOME' 
+    }
+    	
     stages {
 	
-	stage('Compile-Package'){      
-           def mvnHome =  tool name: 'M2_HOME', type: 'maven'   
-           sh "${mvnHome}/bin/mvn package"
-        }    
+	stage('Example') {
+            steps {
+                sh 'mvn --version'
+            }
+        }   
 	    
     	stage('Build') {
           agent {
