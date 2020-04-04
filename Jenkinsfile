@@ -4,7 +4,7 @@ pipeline {
 
     environment
     {
-        PATH="/opt/apache-maven-3.6.3/bin:$PATH"
+        PATH="/home/vagrant/apache-maven-3.6.3/bin:$PATH"
 	registry = "nevincleetus/java-web-app-cicd"
         registryCredential = 'dockerhub'
         dockerImage = ''    
