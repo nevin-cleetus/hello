@@ -5,6 +5,9 @@ pipeline {
     environment
     {
         PATH="/opt/apache-maven-3.6.3/bin:$PATH"
+	registry = "nevincleetus/java-web-app-cicd"
+        registryCredential = 'dockerhub'
+        dockerImage = ''    
     }
 	
     stages {
@@ -36,5 +39,12 @@ pipeline {
                 }
             }
        }
+       stage('Building image') {
+          steps{
+              script {
+                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              }
+          }
+      }	    	    
     }	
 }
