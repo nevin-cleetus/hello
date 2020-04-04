@@ -9,19 +9,8 @@ pipeline {
         registryCredential = 'dockerhub'
         dockerImage = ''  
     }	
-   
-    tools {
-        maven 'M2_HOME' 
-    }
-    	
     stages {
 	
-	stage('Example') {
-            steps {
-                sh 'mvn --version'
-            }
-        }   
-	    
     	stage('Build') {
           agent {
             docker {
@@ -30,9 +19,9 @@ pipeline {
             }
           }
 
-            steps {
+          steps {
                 sh 'mvn clean package'
-            }
+          }
        }
        stage('Test') {
             agent {
