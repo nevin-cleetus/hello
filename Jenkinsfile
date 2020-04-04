@@ -15,9 +15,8 @@ pipeline {
 			doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/nevin-cleetus/hello.git']]]
 		}
 	}	
-    }	
-	
-    stage('Build') {
+    
+       stage('Build') {
           agent {
             docker {
                image 'maven:3-alpine'
@@ -28,8 +27,8 @@ pipeline {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
-        }
-        stage('Test') {
+       }
+       stage('Test') {
             agent {
                docker {
                    image 'maven:3-alpine'
@@ -44,6 +43,6 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
-        }
-	
+       }
+    }	
 }
