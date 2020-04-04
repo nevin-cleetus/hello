@@ -4,18 +4,22 @@ pipeline {
 
     environment
     {
-        PATH="/home/vagrant/apache-maven-3.6.3/bin:$PATH"
+        
 	registry = "nevincleetus/java-web-app-cicd"
         registryCredential = 'dockerhub'
         dockerImage = ''    
     }
 	
-   tools {
-        maven 'M2_HOME'
-   } 	
+   
+	
+   def mvn_version = 'M2_HOME'
+     
 	
     stages {
     	stage('Build') {
+	    withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+               sh "mvn clean package"
+            }		
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
