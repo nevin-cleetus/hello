@@ -7,19 +7,19 @@ pipeline {
         
 	registry = "nevincleetus/java-web-app-cicd"
         registryCredential = 'dockerhub'
-        dockerImage = ''    
+        dockerImage = ''   
+	mvn_version = 'M2_HOME'    
     }
 	
    
 	
-   def mvn_version = 'M2_HOME'
-     
-	
     stages {
     	stage('Build') {
-	    withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
-               sh "mvn clean package"
-            }		
+	    steps {
+		    withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+                       sh "mvn clean package"
+                    }
+	    }	    
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
