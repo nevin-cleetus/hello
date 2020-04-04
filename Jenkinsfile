@@ -2,10 +2,7 @@ pipeline {
     
     agent any
 	
-    tools {
-       mvn_version = 'M2_HOME'    
-    }	
-
+    
     environment
     {        
 	registry = "nevincleetus/java-web-app-cicd"
@@ -13,6 +10,10 @@ pipeline {
         dockerImage = ''  
     }	
    
+   
+    tools {
+       maven 'M2_HOME'
+    }	
 	
     stages {
     	stage('Build') {
