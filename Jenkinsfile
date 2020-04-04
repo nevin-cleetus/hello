@@ -8,15 +8,7 @@ pipeline {
     }
 	
     stages {
-    	stage('GIT checkout'){
-		steps{
-			checkout changelog: false, poll: false, 
-			scm: [$class: 'GitSCM', branches: [[name: '*/master']], 
-			doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/nevin-cleetus/hello.git']]]
-		}
-	}	
-    
-       stage('Build') {
+    	stage('Build') {
           agent {
             docker {
                image 'maven:3-alpine'
