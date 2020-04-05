@@ -35,7 +35,7 @@
         </plugins>
     </build>
 
-    <!--distributionManagement>
+    <distributionManagement>
        <repository>
          <id>central</id>
          <name>jfrog-releases</name>
@@ -46,7 +46,7 @@
         <name>jfrog-snapshots</name>
         <url>http://192.168.120.11:8081/artifactory/hello-maven-snapshot-local</url>
        </snapshotRepository>
-    </distributionManagement-->
+    </distributionManagement>
 
     <!--configuration>
         <mainClass>com.hello.HelloWorld</mainClass>
