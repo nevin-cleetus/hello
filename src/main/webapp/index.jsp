@@ -11,6 +11,6 @@
     <form action="helloServlet" method="post">
     	Enter your name: <input type="text" name="username" size="20">
     	<input type="submit" value="Call Servlet" />
-	</form>
+    </form>
 </body>
 </html>
