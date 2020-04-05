@@ -39,6 +39,17 @@ pipeline {
                 }
             }
        }
+	    
+	    
+       stage('SonarQube Analysis') {
+	   agent any
+            steps {
+              withSonarQubeEnv('SONAR_SERVER') {
+                sh "mvn sonar:sonar -Dsonar.projectKey=MyHello -Dsonar.host.url=http://13.232.223.233:9000/sonar -Dsonar.login=d4b7a84c8da51ff1a211392a5e99344a9e0384e7"      
+              }
+           }
+      } 
+	    
        stage('Building image') {
           steps{
               script {
