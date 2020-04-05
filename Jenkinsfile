@@ -5,7 +5,7 @@ pipeline {
     
     environment
     {        
-	registry = "nevincleetus/java-web-app-cicd"
+	registry = "nevincleetus/helloworld-repo"
         registryCredential = 'dockerhub'
         dockerImage = ''  
     }	
