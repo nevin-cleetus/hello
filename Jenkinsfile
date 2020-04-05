@@ -55,14 +55,13 @@ pipeline {
            }
       } 
  
-      stage("Quality Gate Status Check") {
+      /*stage("Quality Gate Status Check") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
               }
             }
-      }
-	    
+      }*/	    
 	    
       stage('Building image') {
           steps{
