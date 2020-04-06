@@ -7,7 +7,7 @@
 <title>Hello World web application</title>
 </head>
 <body>
-    <h1><font color='red'> Hello JSP and Servlet!</h1>
+    <h1><font color='blue'> Hello JSP and Servlet!</h1>
     <form action="helloServlet" method="post">
     	Enter your name: <input type="text" name="username" size="20">
     	<input type="submit" value="Call Servlet" />
