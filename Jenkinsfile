@@ -39,7 +39,31 @@ pipeline {
                 }
             }
        }
-       stage('Building image') {
+	    
+	    
+       stage('SonarQube Analysis') {
+	    agent {
+               docker {
+                   image 'maven:3-alpine'
+                   args '-v /root/.m2:/root/.m2'
+               }
+            }
+            steps {
+              withSonarQubeEnv('SONAR_SERVER') {
+                sh "mvn sonar:sonar "
+	      }
+           }
+      } 
+ 
+      /*stage("Quality Gate Status Check") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+      }*/	    
+	    
+      stage('Building image') {
           steps{
               script {
                   dockerImage = docker.build registry + ":$BUILD_NUMBER"
