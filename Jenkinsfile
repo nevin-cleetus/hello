@@ -23,24 +23,43 @@ pipeline {
             }
         }	
 	    
-    	/*stage('Build') {
-          agent {
-            docker {
-               image 'maven:3-alpine'
-               args '-v /root/.m2:/root/.m2'
-            }
-          }
-
-          steps {
-                sh 'mvn clean package'
-          }
-	}  */
-       
-       stage ('Build') {
+    	stage ('Artifactory configuration') {
             steps {
-                sh 'mvn clean package'
-            }         
-       }   	    
+                rtServer (
+                    id: "ARTIFACTORY_ID",
+                    url: SERVER_URL,
+                    credentialsId: "ARTIFACTORY_CREDENTIALS"
+                )
+
+                rtMavenDeployer (
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "ARTIFACTORY_ID",
+                    releaseRepo: "hello-maven-release-local",
+                    snapshotRepo: "hello-maven-snapshot-local"
+                )
+
+                rtMavenResolver (
+                    id: "MAVEN_RESOLVER",
+                    serverId: "ARTIFACTORY_ID",
+                    releaseRepo: "hello-maven-release",
+                    snapshotRepo: "hello-maven-snapshot"
+                )
+            }
+        }
+
+        stage ('Exec Maven') {
+            steps {
+                rtMavenRun (
+                    tool: "M2_HOME", // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
+                )
+            }
+        }
+       
+       	    
        
        stage('Test') {
             agent {
