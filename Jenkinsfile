@@ -66,12 +66,12 @@ pipeline {
 	    
 	    
        stage('SonarQube Analysis') {
-	    agent {
+	    /*agent {
                docker {
                    image 'maven:3-alpine'
                    args '-v /root/.m2:/root/.m2'
                }
-            }
+            }*/
             steps {
               withSonarQubeEnv('SONAR_SERVER') {
                 sh "mvn sonar:sonar "
