@@ -34,13 +34,14 @@ pipeline {
 
           steps {
                 sh 'mvn clean package'
-          }*/	    
-	  stage ('Build') {
+          }*/
+       }
+       stage ('Build') {
             steps {
                 sh 'mvn clean package'
             }         
-          }   	    
-       }
+       }   	    
+       
        stage('Test') {
             /*agent {
                docker {
