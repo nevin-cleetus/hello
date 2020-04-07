@@ -13,8 +13,7 @@ pipeline {
     tools { 
         maven 'M2_HOME'         
     }	
-    stages {	
-	
+    stages {		
 	stage ('Initialize') {
             steps {
                 sh '''
@@ -53,11 +52,11 @@ pipeline {
             steps {
                 sh 'mvn test'
             }*/
-	    stage ('Build') {
-                steps {
+	    
+            steps {
                    sh 'mvn clean test'
-                }         
-            } 
+            }         
+             
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
