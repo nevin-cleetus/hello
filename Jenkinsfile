@@ -45,7 +45,7 @@ pipeline {
                     snapshotRepo: "hello-maven-snapshot"
                 )
             }
-        }*/
+        }
 
         stage ('Exec Maven') {
             steps {
@@ -57,7 +57,7 @@ pipeline {
                     resolverId: "MAVEN_RESOLVER"
                 )
             }
-        }
+        }*/
        
        	    
        
