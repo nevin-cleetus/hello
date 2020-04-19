@@ -23,7 +23,7 @@ pipeline {
             }
         }	
 	    
-    	stage ('Artifactory configuration') {
+    	/*stage ('Artifactory configuration') {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_ID",
@@ -45,7 +45,7 @@ pipeline {
                     snapshotRepo: "hello-maven-snapshot"
                 )
             }
-        }
+        }*/
 
         stage ('Exec Maven') {
             steps {
@@ -80,19 +80,19 @@ pipeline {
        }
 	    
 	    
-       stage('SonarQube Analysis') {
+       /*stage('SonarQube Analysis') {
 	    /*agent {
                docker {
                    image 'maven:3-alpine'
                    args '-v /root/.m2:/root/.m2'
                }
             }*/
-            steps {
+            /*steps {
               withSonarQubeEnv('SONAR_SERVER') {
                 sh "mvn sonar:sonar "
 	      }
            }
-      } 
+      } */
  
       /*stage("Quality Gate Status Check") {
             steps {
